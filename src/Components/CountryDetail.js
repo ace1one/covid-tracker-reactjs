@@ -1,64 +1,108 @@
-import React,{useEffect, useState} from 'react'
-import {fetchData} from '../api/country'
+import React,{useContext,useEffect} from 'react'
+import { covidContext } from '../Helper/context'
+import {fetchData} from '../api/index'
+import {fetchCountry} from '../api/country'
 
-const CountryDetail = () => {
-    const [country, setCountry] = useState([])
+const CountryDetail = (props) => {
+    const {search,setSearch, country,setCountry} = useContext(covidContext);
+
    useEffect(() => {
       async function getData(){
-          const res = await fetchData()
-          setCountry(res)
+          const res = await fetchCountry(search)
+          setCountry(res)   
       }
-
       getData();
-       
    }, [])
-
-
-
-
 
     return (
         <div style={{marginLeft:"5px"}}>
 
-            <div class="list-group col-sm-12">
-                <a href="#" class="list-group-item list-group-item-action active col-sm-4" aria-current="true">
-                    <div class="d-flex w-100">
-                    <h5 class="mb-1">{country.name}</h5><small>({country.nativeName})</small>
-                    <img  class="d-flex  w-100 justify-content-end" src={country.flag} height="30" ></img>
-                    </div>
-                    <p class="mb-1">Country in {country.subregion}</p>
-                    
-                </a>
-                <a href="#" class="list-group-item list-group-item-action col-sm-4">
-                    <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1">Region : {country.region}</h6>
-                    </div>
-                    <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1">Capital : {country.capital}</h6>
-                    </div>
-                    <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1">Area : {country.area} km²</h6>
-                    </div>
-                    <div class="d-flex w-100 justify-content-between">
-                    <h6 class="mb-1">Time Zone : {country.timezones}</h6>
-                    </div>
-                    <div class="d-flex w-100">
-                        {
-                            country.languages.map(lang=>{
-                                return (
-                                   <div>
-                                    <h6 class="mb-1">Language:{}</h6> &nbsp;
-                                    <small>({lang.nativeName})</small>
-                                   </div>
-                                )
-                            })
-                          } 
-                    </div>
-
-                    
+           {
+               country ? 
+               <div class="list-group col-sm-12">
+               <a href="#" class="list-group-item list-group-item-action active col-sm-4" aria-current="true">
+                   <div class="d-flex w-100">
+                   <h5 class="mb-1">{country.name}</h5><small>({country.nativeName})</small>
+                   <div class="d-flex  w-100 justify-content-end" style={{height:"20px",width:"30px"}}>
+                      <img class="d-flex  w-100 justify-content-end"  src={country.flag} ></img>
+                   </div>
+                 
+                   </div>
+                   <p class="mb-1">Country in {country.subregion}</p>
                    
-                </a>
-</div>
+               </a>
+               <a href="#" class="list-group-item list-group-item-action col-sm-4">
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Region : </h6>
+                   <h6 class="mb-1">{country.region}</h6>
+                   </div>
+                   <hr></hr>
+
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Capital :</h6>
+                   <h6 class="mb-1"> {country.capital}</h6>
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Language: </h6>   
+                   <h6 class="mb-1">{country.languages_name} ({country.languages_nativeName}) </h6>   
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Dialing code: </h6>   
+                   <h6 class="mb-1">+{country.callingCodes} </h6>   
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Population: </h6>   
+                   <h6 class="mb-1">{country.population}</h6>   
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Area : </h6>
+                   <h6 class="mb-1"> {country.area} km²</h6>
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Time Zone : </h6>
+                   <h6 class="mb-1">{country.timezones}</h6>
+                   </div>
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Currency: </h6>   
+                   <h6 class="mb-1">{country.currencies_name} ({country.currencies_code}) ({country.currencies_symbol}) </h6>
+                   </div>
+                   <hr></hr>
+                   
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">Boaders: </h6> 
+                   <h6 class="mb-1">{country.borders_chi} - {country.borders_ind} </h6>   
+                   </div>
+
+                   <hr></hr>
+                   <div class="d-flex w-100 justify-content-between">
+                   <h6 class="mb-1">latitude/longitude : </h6>
+                   <h6 class="mb-1"> {country.lat}/{country.lng} </h6>
+                   </div>
+
+                   
+                  
+               </a>
+           </div>:
+            <div class="list-group col-sm-12">
+            <a href="#" class="list-group-item list-group-item-action active col-sm-4" aria-current="true">
+                <div class="d-flex w-100">
+                <h5 class="mb-1">Not Found</h5>
+                <div class="d-flex  w-100 justify-content-end" style={{height:"20px",width:"30px"}}>
+                   <img class="d-flex  w-100 justify-content-end"  src="" ></img>
+                </div>
+              
+                </div>
+                <p class="mb-1"></p>
+                
+            </a>
+            </div>
+           }
            
         </div>
     )

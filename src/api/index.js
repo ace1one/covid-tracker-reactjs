@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const url = 'https://disease.sh/v3/covid-19/countries/Nepal'
+const url = 'https://disease.sh/v3/covid-19/countries'
 
 var config = {headers: {'Content-Type': 'application/json','Cache-Control' : 'no-cache'}};
 
- export const fetchData= async ()=>{
+ export const fetchData= async (search)=>{
     try {
-        const res = await axios.get(url, config)
+        const res = await axios.get(`${url}/${search}`, config)
 
         const getData ={
              deaths:res.data.deaths,
@@ -26,6 +26,8 @@ var config = {headers: {'Content-Type': 'application/json','Cache-Control' : 'no
         return getData
        
     } catch (error) {
+       const errorr = "WOW"
+       console.log(errorr)
         
     }
 }
