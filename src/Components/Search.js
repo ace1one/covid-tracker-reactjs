@@ -9,10 +9,13 @@ const Search = () => {
     const handleSubmit= (e) =>{
         async function getData() {
           // You can await here
+          if(search !==""){
           const response = await fetchData(search)
           const res = await fetchCountry(search)
          setNepal(response)
          setCountry(res)
+          }
+         
         }
         getData();
       }

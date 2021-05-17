@@ -8,6 +8,8 @@ import { covidContext } from '../Helper/context'
 import Search from './Search'
 
 
+
+
 const Cards = () => { 
    const {nepal,setNepal,search,setSearch, country,setCountry} = useContext(covidContext);
 
@@ -38,7 +40,7 @@ const Cards = () => {
            <div class="card-body">
              <h5 class="card-title"></h5> 
              <p class="card-text">
-             <CountUp isCounting end={nepal.todayCases}  duration={2.5} separator=","/>
+             <CountUp isCounting end={nepal.todayCases}  duration={2.5} thousandsSeparator=","/>
                  </p>
              
            </div>
@@ -51,7 +53,7 @@ const Cards = () => {
            <div class="card-body">
              <h5 class="card-title"></h5>
              <p class="card-text">
-                 <CountUp isCounting end={nepal.todayRecovered}  duration={2.5} separator=","/>
+                 <CountUp isCounting end={nepal.todayRecovered}  duration={2.5} thousandsSeparator=","/>
                  </p>
            </div>
          </div>
@@ -63,7 +65,7 @@ const Cards = () => {
            <div class="card-body">
              <h5 class="card-title"></h5>
              <p class="card-text">
-             <CountUp isCounting end={nepal.todayDeaths}  duration={2.5} separator=","/>
+             <CountUp isCounting end={nepal.todayDeaths}  duration={2.5} thousandsSeparator=","/>
                  </p>
            </div>
          </div>
@@ -73,11 +75,11 @@ const Cards = () => {
            class="card text-white bg-info mx-3 my-3"
            style={{ width: "200px" }}
          >
-           <div class="card-header">Total Cases</div>
+           <div class="card-header">Total Cases <i class="fas fa-virus"></i></div>
            <div class="card-body">
              <h5 class="card-title"></h5>
              <p class="card-text">
-             <CountUp isCounting end= {nepal.cases}  duration={2.5} separator=","/>
+             <CountUp isCounting end= {nepal.cases}  duration={2.5} thousandsSeparator=","/>
                 </p>
             
            </div>
@@ -86,11 +88,11 @@ const Cards = () => {
            class="card text-white bg-success mx-3 my-3"
            style={{ width: "200px" }}
          >
-           <div class="card-header"> Total Recovered</div>
+           <div class="card-header"> Total Recovered <i class="far fa-smile"></i></div>
            <div class="card-body">
              <h5 class="card-title"></h5>
              <p class="card-text">
-             <CountUp isCounting end={nepal.recovered}  duration={2.5} separator=","/>
+             <CountUp isCounting end={nepal.recovered}  duration={2.5} thousandsSeparator=","/>
                  </p>
            </div>
          </div>
@@ -98,11 +100,11 @@ const Cards = () => {
            class="card text-white bg-danger mx-3 my-3"
            style={{ width: "200px" }}
          >
-           <div class="card-header">Total Deaths</div>
+           <div class="card-header">Total Deaths <i class="far fa-frown"></i></div>
            <div class="card-body">
              <h5 class="card-title"></h5>
              <p class="card-text">
-             <CountUp isCounting end={nepal.deaths}  duration={2.5} separator=","/>
+             <CountUp isCounting end={nepal.deaths}  duration={2.5} thousandsSeparator="," />
              </p>
            </div>
          </div>

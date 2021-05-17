@@ -2,6 +2,7 @@ import React,{useContext,useEffect} from 'react'
 import { covidContext } from '../Helper/context'
 import {fetchData} from '../api/index'
 import {fetchCountry} from '../api/country'
+import { CountUp } from 'use-count-up'
 
 const CountryDetail = (props) => {
     const {search,setSearch, country,setCountry} = useContext(covidContext);
@@ -54,13 +55,15 @@ const CountryDetail = (props) => {
                    </div>
                    <hr></hr>
                    <div class="d-flex w-100 justify-content-between">
-                   <h6 class="mb-1">Population: </h6>   
-                   <h6 class="mb-1">{country.population}</h6>   
+                   <h6 class="mb-1">Population: </h6>  
+                  
+                 
+                   <h6 class="mb-1"> <CountUp isCounting end={country.population}  duration={2.5} thousandsSeparator=","/></h6>   
                    </div>
                    <hr></hr>
                    <div class="d-flex w-100 justify-content-between">
                    <h6 class="mb-1">Area : </h6>
-                   <h6 class="mb-1"> {country.area} km²</h6>
+                   <h6 class="mb-1">  <CountUp isCounting end={country.area}  duration={2.5} thousandsSeparator=","/> km²</h6>
                    </div>
                    <hr></hr>
                    <div class="d-flex w-100 justify-content-between">

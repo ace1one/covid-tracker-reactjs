@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import './App.css';
 import Cards from './Components/Cards';
+import NewCards from './Components/NewCards';
 import {covidContext} from './Helper/context'
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
         nepal ? <h4>Covid 19 Statistics of {nepal.country} </h4> : <h4>Covid 19 Statistics</h4> 
       }
      
-     <Cards/>
+     {/* <Cards/> */}
+     <NewCards/>
   </div>
   </covidContext.Provider>
   );
