@@ -1,26 +1,25 @@
 import React, {useState} from 'react'
 import './App.css';
 import Cards from './Components/Cards';
-import NewCards from './Components/NewCards';
 import {covidContext} from './Helper/context'
 
 function App() {
-  const [nepal, setNepal] = useState([])
+  const [covid, setCovid] = useState([])
   const [country, setCountry] = useState([])
   const [search, setSearch] = useState("nepal")
 
   return (
-    <covidContext.Provider value={{nepal,setNepal,
+    <covidContext.Provider value={{covid,setCovid,
       country,setCountry,
       search,setSearch
     }}>
     <div className="App">
       {
-        nepal ? <h4>Covid 19 Statistics of {nepal.country} </h4> : <h4>Covid 19 Statistics</h4> 
+        covid ? <h4>Covid 19 Statistics of {covid.country} </h4> : <h4>Covid 19 Statistics</h4> 
       }
      
-     {/* <Cards/> */}
-     <NewCards/>
+     <Cards/>
+    
   </div>
   </covidContext.Provider>
   );
